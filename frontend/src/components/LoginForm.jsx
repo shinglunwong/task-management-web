@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "../api";
+import API from "../api";
 
 export default function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("admin");
@@ -11,7 +11,7 @@ export default function LoginForm({ onLogin }) {
     setError("");
 
     try {
-      const res = await axios.post("/auth/login", { username, password });
+      const res = await API.post("/auth/login", { username, password });
       const { token } = res.data;
       localStorage.setItem("token", token);
       onLogin(token);
